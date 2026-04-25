@@ -1,0 +1,25 @@
+# Secrets
+.env
+.env.local
+*.key
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Temporary files
+temp_*.jpg
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
