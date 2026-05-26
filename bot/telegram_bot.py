@@ -31,14 +31,33 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
         weight = 100.0
 
     with open(photo_path, "rb") as f:
-        files = {"file": (photo_path, f, "image/jpeg")}
+        files={"file": (photo_path, f, "image/jpeg")}
         data = {"weight": weight}
         try:
             resp = requests.post(API_URL, files=files, data=data)
-            message = resp.json().get("message", "Error")
+            result=resp.json()
+            predicted_class = result["dish"]
+            confidence = result["confidence"]
+            weight = result["weight"]
+            calories = result["calories"]
+            protein = result["protein"]
+            fat = result["fat"]
+            carbs = result["carbs"]
+            message = (
+                f"Dish: {predicted_class}\n"
+                f"Confidence: {confidence}\n"
+                f"Weight: {weight} g\n\n"
+
+                f"Calories: {calories} kcal\n"
+                f"Protein: {protein} g\n"
+                f"Fat: {fat} g\n"
+                f"Carbs: {carbs} g"
+            )
         except Exception as e:
+            print(resp.text)
             message = f"Error: {e}"
 
+    os.remove(photo_path)
     await update.message.reply_text(message)
 
 if __name__ == "__main__":
