@@ -36,23 +36,59 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
         try:
             resp = requests.post(API_URL, files=files, data=data)
             result=resp.json()
-            predicted_class = result["dish"]
-            confidence = result["confidence"]
-            weight = result["weight"]
-            calories = result["calories"]
-            protein = result["protein"]
-            fat = result["fat"]
-            carbs = result["carbs"]
-            message = (
-                f"Dish: {predicted_class}\n"
-                f"Confidence: {confidence}\n"
-                f"Weight: {weight} g\n\n"
+            response_type=result["type"]
+            if response_type=="dish":
+                result=resp.json()
+                predicted_class = result["dish"]
+                confidence = result["confidence"]
+                weight = result["weight"]
+                calories = result["calories"]
+                protein = result["protein"]
+                fat = result["fat"]
+                carbs = result["carbs"]
+                message = (
+                    f"Dish: {predicted_class}\n"
+                    f"Confidence: {confidence}\n"
+                    f"Weight: {weight} g\n\n"
 
-                f"Calories: {calories} kcal\n"
-                f"Protein: {protein} g\n"
-                f"Fat: {fat} g\n"
-                f"Carbs: {carbs} g"
-            )
+                    f"Calories: {calories} kcal\n"
+                    f"Protein: {protein} g\n"
+                    f"Fat: {fat} g\n"
+                    f"Carbs: {carbs} g"
+                )
+            elif response_type=="not_food":
+                confidence=result["confidence"]
+                message=(
+                    f"Your photo is probably not food\n"
+                    f"Confidence: {confidence}"
+                )
+            else:
+                ingredients=result["ingredients"]
+                calories=result["calories"]
+                protein=result["protein"]
+                fat=result["fat"]
+                carbs=result["carbs"]
+                ingredients_text= ""
+
+                for item in ingredients:
+                    ingredient=item["ingredient"]
+                    conf=item["confidence"]
+                    ingredients_text+=(
+                        f"- {ingredient} ({conf})\n"
+                    )
+
+                message=(
+                    f"Fallback to ingredient model\n\n"
+
+                    f"Ingredients:\n"
+                    f"{ingredients_text}\n"
+
+                    f"Estimated nutrition:\n"
+                    f"Calories: {calories} kcal\n"
+                    f"Protein: {protein} g\n"
+                    f"Fat: {fat} g\n"
+                    f"Carbs: {carbs} g"
+                    )
         except Exception as e:
             print(resp.text)
             message = f"Error: {e}"
