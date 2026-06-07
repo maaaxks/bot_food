@@ -30,8 +30,8 @@ async def analyze_food(file:UploadFile=File(...), weight: float=Form(...)):
         shutil.copyfileobj(file.file, buffer)
 
     predicted_class, confidence=predict_food(temp_filename)
-    THRESHOLD=0.99
-    if confidence>=THRESHOLD:
+    THRESHOLD=0.9
+    if confidence-0.1>=THRESHOLD:
         nutrition=calculate_nutrition(predicted_class, weight)
         os.remove(temp_filename)
 

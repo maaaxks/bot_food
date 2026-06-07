@@ -1,0 +1,17 @@
+{
+  "borsh": {"calories": 50, "protein": 1.5, "fat": 2.5, "carbs": 5.0},
+  "caesar_salad": {"calories": 150, "protein": 8.0, "fat": 12.0, "carbs": 4.0},
+  "carbonara": {"calories": 350, "protein": 12.0, "fat": 18.0, "carbs": 35.0},
+  "croissant": {"calories": 400, "protein": 8.0, "fat": 20.0, "carbs": 45.0},
+  "donut": {"calories": 450, "protein": 6.0, "fat": 25.0, "carbs": 50.0},
+  "french_fried_potato": {"calories": 312, "protein": 3.5, "fat": 15.0, "carbs": 41.0},
+  "fried_eggs": {"calories": 200, "protein": 13.0, "fat": 15.0, "carbs": 1.5},
+  "pancakes": {"calories": 230, "protein": 7.0, "fat": 9.0, "carbs": 30.0},
+  "pelmeni": {"calories": 250, "protein": 11.0, "fat": 12.0, "carbs": 25.0},
+  "pizza_pepperoni": {"calories": 280, "protein": 12.0, "fat": 14.0, "carbs": 28.0},
+  "plov": {"calories": 220, "protein": 7.0, "fat": 10.0, "carbs": 28.0},
+  "pork_chop": {"calories": 280, "protein": 20.0, "fat": 22.0, "carbs": 0.0},
+  "rice": {"calories": 130, "protein": 2.7, "fat": 0.3, "carbs": 28.0},
+  "shashlik": {"calories": 240, "protein": 18.0, "fat": 18.0, "carbs": 1.0},
+  "vinegret": {"calories": 80, "protein": 1.5, "fat": 4.0, "carbs": 9.0}
+}

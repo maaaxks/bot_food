@@ -44,7 +44,7 @@ model_2=model_2.to(DEVICE)
 
 model_2.eval()
 
-def predict_ingredients(image_path, threshold=0.35):
+def predict_ingredients(image_path, threshold=0.2):
     image=Image.open(image_path).convert("RGB")
     image_tensor=transform(image)
     image_tensor=image_tensor.unsqueeze(0)
